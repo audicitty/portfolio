@@ -76,7 +76,17 @@ function About({ onNav }) {
             <div className="photo-frame">
               <span className="corner tl"/><span className="corner tr"/>
               <span className="corner bl"/><span className="corner br"/>
-              <span>PHOTO</span>
+              <img
+                src="meee.jpeg"
+                alt="Divyanshu Bansal"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  display: 'block'
+                }}
+              />
               <div style={{
                 position:'absolute', bottom: 10, left: 12,
                 fontFamily:"'IBM Plex Mono', monospace", fontSize: 9,
