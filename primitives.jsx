@@ -121,13 +121,13 @@ function Navbar({ active, onNav }) {
         </div>
 
         <div className="hidden md:block">
-          <a href="#contact"
-             onClick={e => { e.preventDefault(); click('Contact'); }}
+          <a href="divyanshu_resume_1.pdf"
+             download="Divyanshu_Bansal_Resume.pdf"
              className="btn-amber-outline"
              style={{
                fontFamily:"'IBM Plex Mono', monospace", fontWeight: 500, fontSize: 11,
                textTransform:'uppercase', letterSpacing:'0.14em',
-               padding:'8px 20px'
+               padding:'8px 20px', textDecoration:'none'
              }}>Resume ↓</a>
         </div>
 
@@ -153,11 +153,13 @@ function Navbar({ active, onNav }) {
               {l}
             </a>
           ))}
-          <a href="#contact" onClick={e => { e.preventDefault(); click('Contact'); }}
+          <a href="divyanshu_resume_1.pdf"
+             download="Divyanshu_Bansal_Resume.pdf"
              className="btn-amber-outline text-center"
              style={{
                fontFamily:"'IBM Plex Mono', monospace", fontSize: 11,
-               textTransform:'uppercase', letterSpacing:'0.1em', padding:'10px 20px', marginTop: 8
+               textTransform:'uppercase', letterSpacing:'0.1em', padding:'10px 20px', marginTop: 8,
+               textDecoration:'none'
              }}>Resume ↓</a>
         </div>
       )}

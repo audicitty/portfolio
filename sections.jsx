@@ -133,10 +133,14 @@ function About({ onNav }) {
                 style={{ fontFamily:"'IBM Plex Mono', monospace", fontSize: 12, letterSpacing:'0.15em', padding:'12px 22px', textTransform:'uppercase' }}>
                 View Projects →
               </button>
-              <button className="btn-amber-outline"
-                style={{ fontFamily:"'IBM Plex Mono', monospace", fontSize: 12, letterSpacing:'0.15em', padding:'12px 22px', textTransform:'uppercase' }}>
-                Download Resume ↓
-              </button>
+              <a href="divyanshu_resume_1.pdf"
+                 download="Divyanshu_Bansal_Resume.pdf"
+                 style={{ textDecoration:'none' }}>
+                <button className="btn-amber-outline"
+                  style={{ fontFamily:"'IBM Plex Mono', monospace", fontSize: 12, letterSpacing:'0.15em', padding:'12px 22px', textTransform:'uppercase' }}>
+                  Download Resume ↓
+                </button>
+              </a>
             </div>
           </Reveal>
         </div>
