@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+/* global React */
+const { useEffect: useHE, useState: useHS } = React;
 
 const ROLES = ['Backend Developer', 'Full Stack Developer', 'AI Engineer'];
 
@@ -9,8 +10,8 @@ const MARQUEE_SKILLS = [
 
 /* Live IST clock for the corner chrome */
 function ISTClock() {
-  const [now, setNow] = useState('');
-  useEffect(() => {
+  const [now, setNow] = useHS('');
+  useHE(() => {
     const fmt = () => new Date().toLocaleTimeString('en-IN', {
       hour: '2-digit', minute: '2-digit', second: '2-digit',
       hour12: false, timeZone: 'Asia/Kolkata'
@@ -23,8 +24,8 @@ function ISTClock() {
 }
 
 function RoleRotator() {
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
+  const [idx, setIdx] = useHS(0);
+  useHE(() => {
     const t = setInterval(() => setIdx(i => (i + 1) % ROLES.length), 2600);
     return () => clearInterval(t);
   }, []);
@@ -35,7 +36,7 @@ function RoleRotator() {
   );
 }
 
-export function Hero({ onNav }) {
+function Hero({ onNav }) {
   const marqueeBlock = (
     <span>
       {MARQUEE_SKILLS.map(s => <span key={s} className="marquee-item">{s}</span>)}
@@ -46,7 +47,7 @@ export function Hero({ onNav }) {
     <section id="top" className="hero">
       {/* video background */}
       <video className="hero-video-bg" autoPlay loop muted playsInline aria-hidden="true">
-        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src="hero-video.mp4" type="video/mp4" />
       </video>
       <div className="hero-video-overlay" aria-hidden="true" />
 
@@ -109,3 +110,5 @@ export function Hero({ onNav }) {
     </section>
   );
 }
+
+window.Hero = Hero;

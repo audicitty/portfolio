@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Reveal, SectionHead } from './Primitives.jsx';
+/* global React, Reveal, SectionHead */
+const { useState: useAS, useEffect: useAE } = React;
 
 const ACHIEVEMENTS = [
   {
@@ -54,11 +54,11 @@ const TERM_LINES = [
 ];
 
 function HumorOverlay({ onClose }) {
-  const [printed, setPrinted] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState('lines');
+  const [printed, setPrinted] = useAS(0);
+  const [progress, setProgress] = useAS(0);
+  const [phase, setPhase] = useAS('lines');
 
-  useEffect(() => {
+  useAE(() => {
     if (phase !== 'lines') return;
     if (printed >= TERM_LINES.length) {
       const t = setTimeout(() => setPhase('progress'), 400);
@@ -68,7 +68,7 @@ function HumorOverlay({ onClose }) {
     return () => clearTimeout(t);
   }, [printed, phase]);
 
-  useEffect(() => {
+  useAE(() => {
     if (phase !== 'progress') return;
     const start = performance.now();
     const dur = 2600;
@@ -83,13 +83,13 @@ function HumorOverlay({ onClose }) {
     return () => cancelAnimationFrame(raf);
   }, [phase]);
 
-  useEffect(() => {
+  useAE(() => {
     if (phase !== 'complete') return;
     const t = setTimeout(() => setPhase('reveal'), 650);
     return () => clearTimeout(t);
   }, [phase]);
 
-  useEffect(() => {
+  useAE(() => {
     const onKey = e => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -167,8 +167,8 @@ function HumorOverlay({ onClose }) {
   );
 }
 
-export function Achievements() {
-  const [open, setOpen] = useState(false);
+function Achievements() {
+  const [open, setOpen] = useAS(false);
   return (
     <section id="achievements" className="section">
       <div className="wrap">
@@ -197,3 +197,5 @@ export function Achievements() {
     </section>
   );
 }
+
+window.Achievements = Achievements;

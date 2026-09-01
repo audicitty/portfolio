@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { Reveal, SectionHead, CountUp, SocialIcon } from './Primitives.jsx';
+/* global React, Reveal, SectionHead, CountUp, SocialIcon */
+const { useState: useS, useEffect: useE, useRef: useR } = React;
 
 /* ═══════════════════════ ABOUT ═══════════════════════ */
 const TYPE_LINES = [
@@ -11,11 +11,11 @@ const TYPE_LINES = [
 ];
 
 function Typewriter() {
-  const [lineIdx, setLineIdx] = useState(0);
-  const [text, setText] = useState('');
-  const [deleting, setDeleting] = useState(false);
+  const [lineIdx, setLineIdx] = useS(0);
+  const [text, setText] = useS('');
+  const [deleting, setDeleting] = useS(false);
 
-  useEffect(() => {
+  useE(() => {
     const full = TYPE_LINES[lineIdx];
     let t;
     if (!deleting) {
@@ -49,7 +49,7 @@ const ARSENAL = [
   { dom: 'Tools',    chips: ['Git', 'Docker', 'Postman', 'GCP', 'CI/CD', 'VS Code'] }
 ];
 
-export function About({ onNav }) {
+function About({ onNav }) {
   const stats = [
     ['5', '+',  'Projects Built'],
     ['15', '+', 'Languages & Frameworks'],
@@ -68,7 +68,7 @@ export function About({ onNav }) {
               <span className="corner tl" /><span className="corner tr2" />
               <span className="corner bl2" /><span className="corner br" />
               <img
-                src="/profile.jpeg"
+                src="meee.jpeg"
                 alt="Divyanshu Bansal"
                 className="photo-img"
               />
@@ -113,7 +113,7 @@ export function About({ onNav }) {
                 <button onClick={() => onNav('projects')} className="btn btn-fill">
                   View Projects <span className="arr">→</span>
                 </button>
-                <a href="/divyanshu_bansal_main.pdf" download="Divyanshu_Bansal_Resume.pdf" className="btn btn-ghost">
+                <a href="divyanshu_bansal_main.pdf" download="Divyanshu_Bansal_Resume.pdf" className="btn btn-ghost">
                   Download Resume <span className="arr">↓</span>
                 </a>
               </div>
@@ -140,7 +140,7 @@ export function About({ onNav }) {
 }
 
 /* ═══════════════════════ EXPERIENCE ═══════════════════════ */
-export function Experience() {
+function Experience() {
   const bullets = [
     "Collaborated in Agile sprints and team discussions while contributing to testing, debugging, and API integration across company platforms.",
     "Coordinated with backend engineers to ensure efficient database integration and smooth system performance.",
@@ -346,8 +346,8 @@ const PROJECTS = [
 
 /* subtle 3D tilt on pointer */
 function useTilt() {
-  const ref = useRef(null);
-  useEffect(() => {
+  const ref = useR(null);
+  useE(() => {
     const el = ref.current;
     if (!el || window.matchMedia('(hover: none)').matches) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -406,7 +406,7 @@ function ProjectCard({ p }) {
   );
 }
 
-export function Projects() {
+function Projects() {
   return (
     <section id="projects" className="section noise">
       <div className="wrap">
@@ -434,11 +434,11 @@ export function Projects() {
 
 /* ═══════════════════════ EDUCATION ═══════════════════════ */
 function CGPARing({ pct = 78.2 }) {
-  const ref = useRef(null);
-  const [drawn, setDrawn] = useState(false);
+  const ref = useR(null);
+  const [drawn, setDrawn] = useS(false);
   const r = 56, c = 2 * Math.PI * r;
 
-  useEffect(() => {
+  useE(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(entries => {
@@ -473,7 +473,7 @@ function CGPARing({ pct = 78.2 }) {
   );
 }
 
-export function Education() {
+function Education() {
   return (
     <section id="education" className="section">
       <div className="wrap">
@@ -499,7 +499,7 @@ export function Education() {
 }
 
 /* ═══════════════════════ TESTIMONIALS ═══════════════════════ */
-export function Testimonials() {
+function Testimonials() {
   const items = [
     {
       quote: "They said something really nice about me here. Probably.",
@@ -540,7 +540,7 @@ export function Testimonials() {
 }
 
 /* ═══════════════════════ CONTACT ═══════════════════════ */
-export function Contact() {
+function Contact() {
   const links = [
     { kind: 'mail', t: 'divyanshubansal323@gmail.com', href: 'mailto:divyanshubansal323@gmail.com' },
     { kind: 'linkedin', t: 'linkedin.com/in/divyanshu-bansal', href: 'https://www.linkedin.com/in/divyanshu-bansal-811820298/' },
@@ -593,3 +593,5 @@ export function Contact() {
     </section>
   );
 }
+
+Object.assign(window, { About, Experience, Projects, Education, Testimonials, Contact });

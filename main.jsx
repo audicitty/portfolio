@@ -1,11 +1,8 @@
-import { useState, useEffect } from 'react';
-import { CustomCursor, Ticker, Navbar, Footer } from './components/Primitives.jsx';
-import { Hero } from './components/Hero.jsx';
-import { About, Experience, Projects, Education, Testimonials, Contact } from './components/Sections.jsx';
-import { Achievements } from './components/Achievements.jsx';
+/* global React, ReactDOM */
+const { useState: useAppS, useEffect: useAppE } = React;
 
-export default function App() {
-  const [active, setActive] = useState('top');
+function App() {
+  const [active, setActive] = useAppS('top');
 
   const handleNav = (id) => {
     const map = {
@@ -18,7 +15,7 @@ export default function App() {
     setActive(target);
   };
 
-  useEffect(() => {
+  useAppE(() => {
     const ids = ['about', 'experience', 'projects', 'education', 'achievements', 'contact'];
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -50,3 +47,5 @@ export default function App() {
     </>
   );
 }
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
