@@ -1,11 +1,16 @@
-/* global React, ReactDOM */
-const { useState: useAppS, useEffect: useAppE } = React;
+'use client';
 
-function App() {
-  const [active, setActive] = useAppS('top');
+import { useState, useEffect } from 'react';
+import { CustomCursor, Ticker, Navbar, Footer } from '@/components/primitives';
+import { Hero } from '@/components/Hero';
+import { About, Experience, Projects, Education, Testimonials, Contact } from '@/components/sections';
+import { Achievements } from '@/components/Achievements';
 
-  const handleNav = (id) => {
-    const map = {
+export default function App() {
+  const [active, setActive] = useState('top');
+
+  const handleNav = (id: string) => {
+    const map: Record<string, string> = {
       top: 'top', about: 'about', experience: 'experience', projects: 'projects',
       education: 'education', achievements: 'achievements', contact: 'contact', resume: 'contact'
     };
@@ -15,7 +20,7 @@ function App() {
     setActive(target);
   };
 
-  useAppE(() => {
+  useEffect(() => {
     const ids = ['about', 'experience', 'projects', 'education', 'achievements', 'contact'];
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -47,5 +52,3 @@ function App() {
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
